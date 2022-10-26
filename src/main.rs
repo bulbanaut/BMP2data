@@ -7,7 +7,7 @@ TODO: вывод в файл, возможность считывать и за�
 */
 fn main() {
     println!("kill me");
-    let mut f = File::open("/home/bulbaman/testc4.bmp").expect("жопа");
+    let mut f = File::open("testc4.bmp").expect("жопа");
     let mut data: Vec<u8> = Vec::new();
     f.read_to_end(&mut data).expect("двойная жопа");
     let mut index: usize = 0;
@@ -22,9 +22,7 @@ fn main() {
     for a in data {
         println!("count:{count}");
         println!("{a}");
-        if count % 3 == !0 {
-            total_color = total_color + a as u32;
-        } else {
+        if count as f64 % 3.0 == 0.0 {
             total_color = total_color + a as u32;
             if total_color == 0 {
                 binary.push(false);
@@ -32,6 +30,8 @@ fn main() {
                 binary.push(true);
             }
             total_color = 0;
+        } else {
+            total_color = total_color + a as u32;
         }
         count = count + 1;
     }
