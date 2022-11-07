@@ -37,9 +37,23 @@ fn main() {
     }
     println!("final:{count}");
     count = 0;
-    for a in binary {
+    for a in &binary {
         println!("{a}");
         count = count + 1;
     }
     println!("{count}");
+    
+    count = 0;
+    let mut file = File::create("output.txt").expect("jopa");
+    for i in &binary {
+        count = count + 1;
+        if *i {
+            write!(file,"1",).expect("help");
+        } else {
+            write!(file,"0",).expect("help2");
+        }
+        if count % 8 == 0 {
+            write!(file, "\n").expect("dupa");
+        }
+    }
 }
